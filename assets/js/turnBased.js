@@ -113,7 +113,7 @@ var selectEnemy = function() {
 };
 
 //Function to
-var attack = function(attacker, ) {
+var attack = function(attacker, target) {
 
 };
 
