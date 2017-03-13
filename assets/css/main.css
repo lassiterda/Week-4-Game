@@ -1,0 +1,43 @@
+
+main, footer {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h5 {
+  padding: 0px 10px;
+  font-weight: bold;
+}
+
+.card-heading {
+  margin: 5px 0px;
+}
+
+.pw-select, .pw-details, .pw-fight {
+  margin: -30px 0 0 0;
+  text-align: center;
+}
+
+
+#combat-section {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  main {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
