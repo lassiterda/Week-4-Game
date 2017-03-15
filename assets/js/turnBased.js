@@ -34,7 +34,7 @@ Chandra = {
   dmgRange: 10,
   charges: 3,
   selected: false,
-  dodgePert: .25,
+  dodgePert: .40,
   lvlUp: 9,
 },
 Vraska = {
@@ -81,7 +81,7 @@ var selectHero = function() {
         $(".pw-fight").text("Fight");
 
       //
-      $("#combat-section").animate({opacity: 1}, 400, "linear");
+      $("#combat-section").animate({opacity: 1}, 100, "linear");
 
       //begins listening for a click a select enemy
       selectEnemy();
@@ -93,7 +93,7 @@ var selectHero = function() {
 
 //Click function for character selection
 var selectEnemy = function() {
-  $("#selection-section").animate({opacity: 1}, 50, "linear", function() {
+  $("#selection-section").animate({opacity: 1}, 100, "linear", function() {
     $(this).removeClass("skinny");
   });
  $(".pw-fight").click( function(event) {
@@ -105,21 +105,28 @@ var selectEnemy = function() {
       for ( i = 0; i < planeswalkers.length; i++) {
         if ($(event.target).attr("value") === planeswalkers[i].value) {
           currentEnemy = planeswalkers[i];
-          numenemies -= 1;
           $("#enemy-img").attr("src", currentEnemy.picture);
           updateDOM("#enemy-name", currentEnemy.name);
           updateDOM("#enemy-health", currentEnemy.health);
           updateDOM("#enemy-base-dmg", currentEnemy.dmgBase);
         }
       }
-      $("#enemy-card").animate({opacity: 1}, 400, "linear");
-      $("#selection-section").animate({opacity: 0}, 400, "linear", function() {
+      $("#enemy-card").animate({opacity: 1}, 100, "linear");
+      $("#selection-section").animate({opacity: 0}, 100, "linear", function() {
         $(this).addClass("skinny");
+        $(this).unbind('click');
       });
     }
   });
 };
+//click function for attack button
+$("#hero-Attack").click( function() {
+  combatRound();
+})
 
+$("#hero-reset").click(function() {
+  reset();
+})
 //Function to have one player attack another
 var attack = function(attacker, target) {
 
@@ -130,7 +137,6 @@ var attack = function(attacker, target) {
     }
     else {
         var missed = $("<p class=\"alert alert-warning\"> " + attacker.value + " missed!</p>")
-        console.log(missed)
         missed.appendTo("#alert-section")
     }
 };
@@ -151,25 +157,27 @@ var combatRound = function() {
   hero.dmgBase += hero.lvlUp;
   isFightOver();
 };
-
-$("#hero-Attack").click( function() {
-  combatRound();
-})
-
 //function to check if the fight is over.
 isFightOver = function() {
   if (currentEnemy.health <= 0) {
-    $("#enemy-card").animate({opacity: 0}, 400, "linear");
+    $("#enemy-card").animate({opacity: 0}, 100, "linear");
     currentEnemy = false;
+    numenemies -= 1;
     if (numenemies === 0) {
+        $("#alert-section").empty();
+        $("<p class=\"alert alert-success\"><strong> You are Victorious!</strong></p>" ).appendTo("#alert-section")
         console.log("you Win")
+        return true;
     }
-    selectEnemy();
+    else {
+          selectEnemy();
+          return true;
+    }
 
-    return true;
   }
   else if ( hero.health <= 0) {
-    alert("You Lose...")
+    $("#alert-section").empty();
+    $("<p class=\"alert alert-warning\"><strong> You have been defeated...</strong></p>" ).appendTo("#alert-section")
     if(confirm("Want to play again?")) {
       reset();
     }
@@ -177,8 +185,9 @@ isFightOver = function() {
   }
   return false;
 }
-
+//function to reset the game upon reset click or game end
 var reset = function() {
+  //variable resets
   planeswalkers =
   [Jace = {
     value: "Jace",
@@ -232,26 +241,31 @@ var reset = function() {
   var hero = null;
   var currentEnemy = null;
   numenemies = 3;
+
+  //dom resets
   $("#alert-section").empty();
-  $(".pl-walker-card").animate({opacity: 1}, 50, "linear",
+  $(".pl-walker-card").animate({opacity: 1}, 100, "linear",
      function() {
       $('.pl-walker-card').removeClass("skinny"); });
-  $("#selection-section").animate({opacity: 1}, 50, "linear", function() {
+  $("#selection-section").animate({opacity: 1}, 100, "linear", function() {
     $(this).removeClass("skinny")
   });
-
-  $("#enemy-img").attr("src","assets/images/Vraska.jpg");
+  $("#enemy-card").animate({opacity: 0}, 100, "linear");
+  $("#combat-section").animate({opacity: 0}, 100, "linear")
+  //click handling
+  $(".pw-fight").addClass("btn-primary pw-select");
+  $(".pw-fight").removeClass("btn-danger pw-fight");
+  $(".pw-select").text("Select");
+  selectHero();
 }
-
 //function to update a particular DOM element with variable text
 function updateDOM(ele, v) {
   $(ele).text(v);
 }
-
 //function to hide a character card when a button is clicked, should be placed inside a click event
 function removeCard(event){
   card = event.target.parentNode.parentNode.parentNode
-  $(card).animate({opacity: 0}, 50, "linear",
+  $(card).animate({opacity: 0}, 100, "linear",
      function() {
       $(card).addClass("skinny"); });
 };
