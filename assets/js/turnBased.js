@@ -94,7 +94,7 @@ var selectHero = function() {
 //Click function for character selection
 var selectEnemy = function() {
   $("#selection-section").animate({opacity: 1}, 50, "linear", function() {
-    $(this).removeClass("hidden");
+    $(this).removeClass("skinny");
   });
  $(".pw-fight").click( function(event) {
     if (!currentEnemy) {
@@ -112,8 +112,9 @@ var selectEnemy = function() {
           updateDOM("#enemy-base-dmg", currentEnemy.dmgBase);
         }
       }
+      $("#enemy-card").animate({opacity: 1}, 400, "linear");
       $("#selection-section").animate({opacity: 0}, 400, "linear", function() {
-        $(this).addClass("hidden");
+        $(this).addClass("skinny");
       });
     }
   });
@@ -158,11 +159,13 @@ $("#hero-Attack").click( function() {
 //function to check if the fight is over.
 isFightOver = function() {
   if (currentEnemy.health <= 0) {
+    $("#enemy-card").animate({opacity: 0}, 400, "linear");
     currentEnemy = false;
-    selectEnemy();
     if (numenemies === 0) {
-      console.log("you Win")
+        console.log("you Win")
     }
+    selectEnemy();
+
     return true;
   }
   else if ( hero.health <= 0) {
@@ -232,9 +235,9 @@ var reset = function() {
   $("#alert-section").empty();
   $(".pl-walker-card").animate({opacity: 1}, 50, "linear",
      function() {
-      $('.pl-walker-card').removeClass("hidden"); });
+      $('.pl-walker-card').removeClass("skinny"); });
   $("#selection-section").animate({opacity: 1}, 50, "linear", function() {
-    $(this).removeClass("hidden")
+    $(this).removeClass("skinny")
   });
 
   $("#enemy-img").attr("src","assets/images/Vraska.jpg");
@@ -250,7 +253,7 @@ function removeCard(event){
   card = event.target.parentNode.parentNode.parentNode
   $(card).animate({opacity: 0}, 50, "linear",
      function() {
-      $(card).addClass("hidden"); });
+      $(card).addClass("skinny"); });
 };
 
 selectHero();
