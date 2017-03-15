@@ -16,7 +16,7 @@
 
 <body>
   <header>
-    <h2>Header Text</h2>
+    <h2>Planeswalker Combat</h2>
   </header>
   <main>
     <!-- Selection Section -->
@@ -33,7 +33,7 @@
           <img src="assets/images/Jace.png" class="img img-responsive">
 
           <div class="btn-group pl-walker-btns" role="group" aria-label="...">
-            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Info</button>
+            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Details</button>
             <button type="button" class="btn btn-primary pw-select" value="Jace">Select</button>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <img src="assets/images/Koth.jpg" class="img img-responsive">
 
           <div class="btn-group pl-walker-btns" role="group" aria-label="...">
-            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Info</button>
+            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Details</button>
             <button type="button" class="btn btn-primary pw-select" value="Koth">Select</button>
           </div>
 
@@ -66,7 +66,7 @@
           <img src="assets/images/Chandra.jpg" class="img img-responsive">
 
           <div class="btn-group pl-walker-btns" role="group" aria-label="...">
-            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Info</button>
+            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Details</button>
             <button type="button" class="btn btn-primary pw-select" value="Chandra">Select</button>
           </div>
 
@@ -83,7 +83,7 @@
           <img src="assets/images/Vraska.jpg" class="img img-responsive">
 
           <div class="btn-group pl-walker-btns" role="group" aria-label="...">
-            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Info</button>
+            <button type="button" class="btn btn-default pw-details" data-toggle="modal" data-target="#myModal">Details</button>
             <button type="button" class="btn btn-primary pw-select" value="Vraska">Select</button>
           </div>
         </div>
@@ -91,7 +91,7 @@
     </section>
 
     <!-- Messages Section -->
-    <section>
+    <section id="alert-section">
 
     </section>
 
@@ -107,27 +107,31 @@
             <div class="panel panel-default card-heading">
               <h5 id="hero-name">Hero Name</h5>
             </div>
-            <!-- Hero picture -->
-            <img id="hero-img" src="assets/images/placeholder.png" class="img img-responsive">
-            <!-- Hero stats -->
+
+            <!-- Hero Picture and stats -->
             <ul class="list-group">
+              <li class="list-group-item"><img id="hero-img" src="assets/images/placeholder.png" class="img img-responsive"></li>
               <li class="list-group-item">Health: <span id="hero-health"></span></li>
               <li class="list-group-item">Base Damage: <span id="hero-base-dmg"></span></li>
               <li class="list-group-item">Charges: <span id="hero-charges"></span></li>
             </ul>
           </div>
+
           <!-- Combat Buttons -->
           <div class="col-xs-2 col-sm-2 ol-md-2">
               <button type="button" class="btn btn-danger hero-btn" id="hero-Attack"> Attack </button>
               <button type="button" class="btn btn-primary hero-btn" id="hero-special">Special</button>
               <p>Special: <span id="hero-special-desc"></span></p>
           </div>
+
           <div class="col-xs-5 col-sm-5 col-md-5">
+            <!-- Enemy Pane -->
             <div class="panel panel-default card-heading">
               <h5 class="" id="enemy-name">Enemy</h5>
             </div>
-            <img id="enemy-img" src="assets/images/placeholder.png" class="img img-responsive">
+            <!-- Enemy Picture and stats -->
             <ul class="list-group">
+              <li class="list-group-item"><img id="enemy-img" src="assets/images/placeholder.png" class="img img-responsive"></li>
               <li class="list-group-item">Health: <span id="enemy-health"></span></li>
               <li class="list-group-item">Base Damage: <span id="enemy-base-dmg"></span></li>
             </ul>
